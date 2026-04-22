@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     }
 
     const { data, error } = await resend.emails.send({
-      from: "Palm Springs Training <onboarding@resend.dev>",
+      from: "Palm Springs Training <noreply@palmspringsaestheticstraining.com>",
       to: "palmspringsaesthetics@yahoo.com",
       replyTo: email,
       subject: `New Training Enquiry — ${name}`,
