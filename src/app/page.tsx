@@ -153,6 +153,11 @@ export default function Home() {
               <span className="absolute -bottom-1.5 left-0 w-0 h-px bg-[#C9A961] group-hover:w-full transition-all duration-400" />
             </a>
             <span className="text-[#C9A961]/40 text-[8px]">&#9670;</span>
+            <a href="#graduates" className="group relative text-white/80 hover:text-[#C9A961] transition-colors">
+              Graduates
+              <span className="absolute -bottom-1.5 left-0 w-0 h-px bg-[#C9A961] group-hover:w-full transition-all duration-400" />
+            </a>
+            <span className="text-[#C9A961]/40 text-[8px]">&#9670;</span>
             <a href="#trainers" className="group relative text-white/80 hover:text-[#C9A961] transition-colors">
               Trainers
               <span className="absolute -bottom-1.5 left-0 w-0 h-px bg-[#C9A961] group-hover:w-full transition-all duration-400" />
