@@ -67,6 +67,18 @@ const courses = [
   },
 ];
 
+const upcomingDates = [
+  { date: "Saturday 17th May 2026", course: "Foundation Toxin Course" },
+  { date: "Sunday 14th June 2026", course: "Foundation Toxin Course" },
+];
+
+const registerInterestCourses = [
+  "Advanced Toxin Course",
+  "Foundation Lip Course",
+  "Foundation Dermal Filler Course",
+  "Skin Boosters / Mesotherapy",
+];
+
 const graduates = [
   { src: "/grad-1.webp", alt: "Graduates celebrating with Lee" },
   { src: "/grad-2.webp", alt: "Group of six graduating students" },
@@ -111,6 +123,10 @@ export default function Home() {
   const [formStatus, setFormStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const show121 = filter === "all" || filter === "121";
+  const showV300 = filter === "all" || filter === "v300";
+  const showGroup = filter === "all" || filter === "group";
+
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -135,10 +151,6 @@ export default function Home() {
     }
   };
 
-  const show121 = filter === "all" || filter === "121";
-  const showV300 = filter === "all" || filter === "v300";
-  const showGroup = filter === "all" || filter === "group";
-
   return (
     <main className="min-h-screen bg-[#0A0A0A] text-white">
       {/* HERO */}
@@ -150,6 +162,11 @@ export default function Home() {
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="hidden md:flex items-center justify-center gap-8 text-xs font-light tracking-[0.25em] uppercase">
             <a href="#courses" className="group relative text-white/80 hover:text-[#C9A961] transition-colors">
               Courses
+              <span className="absolute -bottom-1.5 left-0 w-0 h-px bg-[#C9A961] group-hover:w-full transition-all duration-400" />
+            </a>
+            <span className="text-[#C9A961]/40 text-[8px]">&#9670;</span>
+            <a href="#upcoming" className="group relative text-white/80 hover:text-[#C9A961] transition-colors">
+              Dates
               <span className="absolute -bottom-1.5 left-0 w-0 h-px bg-[#C9A961] group-hover:w-full transition-all duration-400" />
             </a>
             <span className="text-[#C9A961]/40 text-[8px]">&#9670;</span>
@@ -175,7 +192,6 @@ export default function Home() {
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="flex justify-end items-center">
             <a href="#contact" className="hidden md:inline-block px-5 py-2 text-sm border border-[#C9A961] text-[#C9A961] hover:bg-[#C9A961] hover:text-[#0A0A0A] transition-all">Enquire</a>
-            {/* MOBILE HAMBURGER */}
             <button onClick={() => setMobileMenuOpen(true)} className="md:hidden p-2 text-white hover:text-[#C9A961] transition-colors" aria-label="Open menu">
               <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16" />
@@ -201,23 +217,24 @@ export default function Home() {
                 <span className="text-[#C9A961] text-[10px] tracking-[0.3em] uppercase font-light">Menu</span>
                 <span className="h-px w-8 bg-[#C9A961]" />
               </motion.div>
-              <nav className="flex flex-col items-center gap-8 mb-12">
+              <nav className="flex flex-col items-center gap-7 mb-12">
                 {[
                   { href: "#courses", label: "Courses" },
+                  { href: "#upcoming", label: "Upcoming Dates" },
                   { href: "#graduates", label: "Graduates" },
                   { href: "#trainers", label: "Trainers" },
                   { href: "#why", label: "Why Us" },
                   { href: "#contact", label: "Contact" },
                 ].map((link, i) => (
-                  <motion.a key={link.href} href={link.href} onClick={() => setMobileMenuOpen(false)} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 + i * 0.08 }} className="font-fraunces text-4xl font-light text-white hover:text-[#C9A961] transition-colors">
+                  <motion.a key={link.href} href={link.href} onClick={() => setMobileMenuOpen(false)} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 + i * 0.08 }} className="font-fraunces text-3xl font-light text-white hover:text-[#C9A961] transition-colors">
                     {link.label}
                   </motion.a>
                 ))}
               </nav>
-              <motion.a href="#contact" onClick={() => setMobileMenuOpen(false)} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.75 }} className="inline-block px-10 py-4 bg-[#C9A961] text-[#0A0A0A] font-medium tracking-wide hover:bg-[#d9bc7a] transition-colors mb-10 min-w-[240px]">
+              <motion.a href="#contact" onClick={() => setMobileMenuOpen(false)} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.85 }} className="inline-block px-10 py-4 bg-[#C9A961] text-[#0A0A0A] font-medium tracking-wide hover:bg-[#d9bc7a] transition-colors mb-10 min-w-[240px]">
                 Enquire Now
               </motion.a>
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.9 }} className="flex gap-4">
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.95 }} className="flex gap-4">
                 <a href="https://instagram.com/palm_springs_training" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-11 h-11 border border-white/20 hover:border-[#C9A961] hover:bg-[#C9A961] hover:text-[#0A0A0A] text-white/70 flex items-center justify-center transition-colors">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 </a>
@@ -228,6 +245,7 @@ export default function Home() {
             </div>
           </motion.div>
         )}
+
         <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 text-center pt-48 md:pt-56 pb-32">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className="mb-8 flex items-center justify-center gap-3 flex-wrap">
             <span className="h-px w-8 md:w-12 bg-[#C9A961]" />
@@ -364,7 +382,6 @@ export default function Home() {
             <div className="space-y-16 md:space-y-20">
               {courses.map((course, i) => (
                 <motion.div key={course.id} {...fadeUp}>
-                  {/* COURSE HEADER */}
                   <div className="mb-8 text-center">
                     <p className="text-[#C9A961] text-xs tracking-[0.4em] font-light mb-3">COURSE {String(i + 1).padStart(2, "0")}</p>
                     <h3 className="font-fraunces text-3xl md:text-4xl lg:text-5xl font-light mb-2">{course.name}</h3>
@@ -374,7 +391,6 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* 5-COLUMN PROSPECTUS */}
                   <div className="grid grid-cols-1 md:grid-cols-5 border border-[#C9A961]/20">
                     <ProspectusColumn title="Entry Requirements" body={course.entryReqs} isGold={false} icon={prospectusIcons.entry} />
                     <ProspectusColumn title="Treatment Areas Covered" body={course.treatmentAreas} isGold={true} icon={prospectusIcons.areas} />
@@ -383,7 +399,6 @@ export default function Home() {
                     <ProspectusColumn title="Support" body={course.support} isGold={false} icon={prospectusIcons.support} />
                   </div>
 
-                  {/* CTA BAR */}
                   <div className="mt-8 flex flex-col items-center gap-3">
                     <motion.a href="#contact" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }} className="inline-block px-10 py-4 bg-[#C9A961] text-[#0A0A0A] font-medium tracking-wide hover:bg-[#d9bc7a] transition-colors text-center min-w-[280px]">
                       Enquire About This Course
@@ -391,15 +406,12 @@ export default function Home() {
                     <p className="text-white/40 text-[10px] tracking-[0.3em] uppercase mt-3 mb-1">Or WhatsApp Direct</p>
                     <div className="flex flex-col sm:flex-row gap-2 w-full max-w-2xl justify-center">
                       <motion.a href="https://wa.me/447792689767" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }} className="inline-flex items-center justify-center gap-2 px-5 py-3 border border-[#C9A961]/40 text-[#C9A961] text-xs tracking-wide hover:bg-[#C9A961] hover:text-[#0A0A0A] transition-colors">
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.693.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
                         Lee &mdash; Founder&rsquo;s Course
                       </motion.a>
                       <motion.a href="https://wa.me/447827442951" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }} className="inline-flex items-center justify-center gap-2 px-5 py-3 border border-[#C9A961]/40 text-[#C9A961] text-xs tracking-wide hover:bg-[#C9A961] hover:text-[#0A0A0A] transition-colors">
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.693.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
                         Alana &mdash; Group Training
                       </motion.a>
                       <motion.a href="https://wa.me/447552231220" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }} className="inline-flex items-center justify-center gap-2 px-5 py-3 border border-[#C9A961]/40 text-[#C9A961] text-xs tracking-wide hover:bg-[#C9A961] hover:text-[#0A0A0A] transition-colors">
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.693.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
                         Debbie &mdash; Group Training
                       </motion.a>
                     </div>
@@ -475,6 +487,60 @@ export default function Home() {
               </div>
             </motion.div>
           )}
+        </div>
+      </section>
+
+      {/* UPCOMING DATES */}
+      <section id="upcoming" className="bg-[#0A0A0A] text-white py-24 md:py-32 relative overflow-hidden border-t border-white/5">
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#C9A961] opacity-[0.04] blur-[140px] rounded-full" />
+        <div className="max-w-5xl mx-auto px-6 md:px-12 relative z-10">
+          <motion.div {...fadeUp} className="text-center mb-12 md:mb-16">
+            <div className="mb-6 flex items-center justify-center gap-3">
+              <span className="h-px w-8 md:w-12 bg-[#C9A961]" />
+              <span className="text-[#C9A961] text-[10px] md:text-xs tracking-[0.3em] uppercase font-light">Upcoming Dates</span>
+              <span className="h-px w-8 md:w-12 bg-[#C9A961]" />
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light leading-[1.15] tracking-tight mb-6">
+              Reserve your<br />
+              <span className="italic text-[#C9A961]">place in the diary.</span>
+            </h2>
+            <p className="text-lg md:text-xl text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
+              Confirmed course dates below. Other courses run on request &mdash; register your interest and we&rsquo;ll be in touch as soon as new dates are released.
+            </p>
+          </motion.div>
+
+          <motion.div {...fadeUp} className="border border-[#C9A961]/30 mb-10">
+            <div className="hidden md:grid md:grid-cols-[1fr_2fr_auto] gap-4 px-6 py-4 bg-[#C9A961]/10 border-b border-[#C9A961]/30">
+              <p className="text-[#C9A961] text-xs tracking-[0.3em] uppercase font-light">Date</p>
+              <p className="text-[#C9A961] text-xs tracking-[0.3em] uppercase font-light">Course</p>
+              <p className="text-[#C9A961] text-xs tracking-[0.3em] uppercase font-light text-right">Action</p>
+            </div>
+            {upcomingDates.map((item, i) => (
+              <motion.div key={i} {...fadeUpStagger(i)} className="grid grid-cols-1 md:grid-cols-[1fr_2fr_auto] gap-4 px-6 py-6 border-b border-white/5 last:border-b-0 items-center hover:bg-white/[0.02] transition-colors">
+                <p className="font-fraunces text-xl md:text-2xl font-light">{item.date}</p>
+                <p className="text-white/70 font-light">{item.course}</p>
+                <a href="#contact" className="inline-block px-6 py-3 bg-[#C9A961] text-[#0A0A0A] text-xs tracking-[0.2em] uppercase font-medium hover:bg-[#d9bc7a] transition-colors text-center md:text-left">Enquire</a>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div {...fadeUp} className="mt-16">
+            <div className="text-center mb-8">
+              <p className="text-[#C9A961] text-xs tracking-[0.3em] uppercase font-light mb-2">Register Interest</p>
+              <h3 className="font-fraunces text-2xl md:text-3xl font-light">
+                Other courses run on request
+              </h3>
+              <p className="text-white/50 text-sm mt-2 max-w-xl mx-auto">Be first to hear when new dates are released &mdash; including private 1-to-1 Founder&rsquo;s Course bookings.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {registerInterestCourses.map((courseName, i) => (
+                <motion.div key={i} {...fadeUpStagger(i)} className="flex items-center justify-between gap-4 px-6 py-5 border border-white/10 hover:border-[#C9A961]/40 transition-colors">
+                  <p className="text-white/80 font-light">{courseName}</p>
+                  <a href="#contact" className="inline-block px-4 py-2 border border-[#C9A961]/40 text-[#C9A961] text-[10px] tracking-[0.2em] uppercase font-light hover:bg-[#C9A961] hover:text-[#0A0A0A] transition-colors whitespace-nowrap">Register Interest</a>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -555,12 +621,8 @@ export default function Home() {
                 <span className="px-3 py-1.5 bg-white/10 text-white text-xs tracking-wide">Vivacy Faculty Trainer</span>
               </div>
               <div className="flex flex-wrap gap-3">
-                <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} href="https://wa.me/447792689767" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-3 bg-[#C9A961] text-[#0A0A0A] text-sm font-medium tracking-wide hover:bg-[#d9bc7a] transition-colors">
-                  WhatsApp Lee
-                </motion.a>
-                <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} href="tel:+447792689767" className="inline-flex items-center gap-2 px-5 py-3 border border-white/30 text-white text-sm font-medium tracking-wide hover:bg-white hover:text-[#0A0A0A] transition-colors">
-                  Call Lee
-                </motion.a>
+                <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} href="https://wa.me/447792689767" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-3 bg-[#C9A961] text-[#0A0A0A] text-sm font-medium tracking-wide hover:bg-[#d9bc7a] transition-colors">WhatsApp Lee</motion.a>
+                <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} href="tel:+447792689767" className="inline-flex items-center gap-2 px-5 py-3 border border-white/30 text-white text-sm font-medium tracking-wide hover:bg-white hover:text-[#0A0A0A] transition-colors">Call Lee</motion.a>
               </div>
             </motion.div>
           </div>
@@ -587,12 +649,8 @@ export default function Home() {
                 <span className="px-3 py-1.5 bg-white/10 text-white text-xs tracking-wide">Patient Safety</span>
               </div>
               <div className="flex flex-wrap gap-3">
-                <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} href="https://wa.me/447827442951" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-3 bg-[#C9A961] text-[#0A0A0A] text-sm font-medium tracking-wide hover:bg-[#d9bc7a] transition-colors">
-                  WhatsApp Alana
-                </motion.a>
-                <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} href="tel:+447827442951" className="inline-flex items-center gap-2 px-5 py-3 border border-white/30 text-white text-sm font-medium tracking-wide hover:bg-white hover:text-[#0A0A0A] transition-colors">
-                  Call Alana
-                </motion.a>
+                <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} href="https://wa.me/447827442951" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-3 bg-[#C9A961] text-[#0A0A0A] text-sm font-medium tracking-wide hover:bg-[#d9bc7a] transition-colors">WhatsApp Alana</motion.a>
+                <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} href="tel:+447827442951" className="inline-flex items-center gap-2 px-5 py-3 border border-white/30 text-white text-sm font-medium tracking-wide hover:bg-white hover:text-[#0A0A0A] transition-colors">Call Alana</motion.a>
               </div>
             </motion.div>
           </div>
@@ -620,12 +678,8 @@ export default function Home() {
                 <span className="px-3 py-1.5 bg-white/10 text-white text-xs tracking-wide">Qualified Teacher</span>
               </div>
               <div className="flex flex-wrap gap-3">
-                <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} href="https://wa.me/447552231220" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-3 bg-[#C9A961] text-[#0A0A0A] text-sm font-medium tracking-wide hover:bg-[#d9bc7a] transition-colors">
-                  WhatsApp Debbie
-                </motion.a>
-                <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} href="tel:+447552231220" className="inline-flex items-center gap-2 px-5 py-3 border border-white/30 text-white text-sm font-medium tracking-wide hover:bg-white hover:text-[#0A0A0A] transition-colors">
-                  Call Debbie
-                </motion.a>
+                <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} href="https://wa.me/447552231220" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-3 bg-[#C9A961] text-[#0A0A0A] text-sm font-medium tracking-wide hover:bg-[#d9bc7a] transition-colors">WhatsApp Debbie</motion.a>
+                <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} href="tel:+447552231220" className="inline-flex items-center gap-2 px-5 py-3 border border-white/30 text-white text-sm font-medium tracking-wide hover:bg-white hover:text-[#0A0A0A] transition-colors">Call Debbie</motion.a>
               </div>
             </motion.div>
           </div>
@@ -749,8 +803,6 @@ export default function Home() {
       {/* FOOTER */}
       <footer className="bg-[#050505] text-white border-t border-[#C9A961]/20">
         <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-20">
-
-          {/* Top Row — Logo + Tagline */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between pb-10 border-b border-white/10 mb-12">
             <div className="flex items-center gap-4 mb-6 md:mb-0">
               <Image src="/logo.png" alt="Palm Springs Aesthetics Training" width={80} height={80} className="w-16 h-16 object-contain" />
@@ -761,16 +813,14 @@ export default function Home() {
             </div>
             <div className="flex gap-6 flex-wrap">
               <a href="#courses" className="text-white/60 hover:text-[#C9A961] text-xs tracking-[0.2em] uppercase transition-colors">Courses</a>
+              <a href="#upcoming" className="text-white/60 hover:text-[#C9A961] text-xs tracking-[0.2em] uppercase transition-colors">Dates</a>
               <a href="#graduates" className="text-white/60 hover:text-[#C9A961] text-xs tracking-[0.2em] uppercase transition-colors">Graduates</a>
               <a href="#trainers" className="text-white/60 hover:text-[#C9A961] text-xs tracking-[0.2em] uppercase transition-colors">Trainers</a>
               <a href="#contact" className="text-white/60 hover:text-[#C9A961] text-xs tracking-[0.2em] uppercase transition-colors">Contact</a>
             </div>
           </div>
 
-          {/* 3 Columns */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-
-            {/* Contact */}
             <div>
               <h4 className="text-[#C9A961] text-xs tracking-[0.3em] uppercase font-light mb-6">Contact</h4>
               <address className="not-italic text-white/70 text-sm leading-relaxed mb-6">
@@ -786,7 +836,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Our Courses */}
             <div>
               <h4 className="text-[#C9A961] text-xs tracking-[0.3em] uppercase font-light mb-6">Our Courses</h4>
               <ul className="space-y-2 text-sm">
@@ -800,7 +849,6 @@ export default function Home() {
               </ul>
             </div>
 
-            {/* Legal */}
             <div>
               <h4 className="text-[#C9A961] text-xs tracking-[0.3em] uppercase font-light mb-6">Legal &amp; Policy</h4>
               <ul className="space-y-2 text-sm">
@@ -822,12 +870,10 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Bottom Bar */}
           <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs text-white/40">
             <p>&copy; {new Date().getFullYear()} Palm Springs Aesthetics Training. All rights reserved.</p>
             <p className="tracking-wide">CPD-Accredited Aesthetic Training Provider &middot; Based in Cardiff, UK</p>
           </div>
-
         </div>
       </footer>
     </main>
