@@ -68,7 +68,7 @@ const courses = [
 ];
 
 const upcomingDates = [
-  { date: "Saturday 17th May 2026", course: "Foundation Toxin Course" },
+  { date: "Sunday 17th May 2026", course: "Foundation Toxin Course" },
   { date: "Sunday 14th June 2026", course: "Foundation Toxin Course" },
 ];
 
