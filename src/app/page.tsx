@@ -662,7 +662,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
             <motion.div {...fadeInLeft} whileHover={{ scale: 1.02 }} transition={{ duration: 0.6 }} className="relative aspect-[3/4] overflow-hidden bg-white/[0.03] p-3 border border-[#C9A961]/20">
               <div className="relative w-full h-full overflow-hidden">
-                <Image src="/debbie.png" alt="Debbie" fill className="object-cover" />
+                <Image src="/debbie-new.jpg" alt="Debbie" fill className="object-cover" />
               </div>
             </motion.div>
             <motion.div {...fadeInRight}>
