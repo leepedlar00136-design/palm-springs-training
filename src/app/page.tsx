@@ -69,7 +69,11 @@ const courses = [
 
 const upcomingDates = [
   { date: "Sunday 17th May 2026", course: "Foundation Toxin Course" },
+  { date: "Sunday 31st May 2026", course: "Foundation Toxin Course" },
   { date: "Sunday 14th June 2026", course: "Foundation Toxin Course" },
+  { date: "Sunday 28th June 2026", course: "Foundation Toxin Course" },
+  { date: "Sunday 19th July 2026", course: "Foundation Toxin Course" },
+  { date: "Sunday 16th August 2026", course: "Foundation Toxin Course" },
 ];
 
 const registerInterestCourses = [
@@ -664,18 +668,18 @@ export default function Home() {
             <motion.div {...fadeInRight}>
               <span className="text-[#C9A961] text-xs tracking-[0.3em] uppercase font-light">Featured Trainer / 03</span>
               <h3 className="font-fraunces text-4xl md:text-5xl font-light mt-3 mb-2">Debbie</h3>
-              <p className="text-white/50 text-sm tracking-[0.2em] uppercase mb-8">Midwife &amp; Lead Trainer</p>
+              <p className="text-white/50 text-sm tracking-[0.2em] uppercase mb-8">Advanced Aesthetic Practitioner &amp; Lead Trainer</p>
               <div className="space-y-4 text-white/70 leading-relaxed mb-8">
-                <p>Debbie is a highly experienced midwife with over 20 years in clinical practice, bringing a strong foundation of patient care, safety, and compassion into her aesthetics career over the past four years.</p>
-                <p>She holds a qualification in teaching and has recently achieved her V300 Independent Prescribing certification, further strengthening her clinical scope and commitment to delivering safe, evidence-based practice. Debbie is passionate about education and supporting others in developing confidence and competence within aesthetics.</p>
-                <p>Her clinical interests lie primarily in dermal fillers, where she focuses on achieving balanced, natural-looking results tailored to each individual. Alongside this, Debbie has a strong interest in skincare, recognising the importance of a holistic approach to skin health and long-term results.</p>
-                <p>Known for her warm, supportive approach, Debbie creates a positive learning environment while maintaining high professional and ethical standards in both her clinical work and teaching.</p>
+                <p>Debbie is an Advanced Aesthetic Practitioner and Lead Trainer, with over 15 years of clinical experience as a Registered Midwife specialising in home birth and women-centred care. She brings a unique blend of medical expertise, education, and compassionate, patient-centred care into the field of aesthetics &mdash; where safety, trust, and natural results always come first.</p>
+                <p>Alongside her clinical work, Debbie holds a PGCE and previously worked as a university course leader, teaching and mentoring pre-registration nurses and midwives while leading a team of lecturers. This strong educational foundation allows her to deliver training in a way that feels clear, structured, and approachable &mdash; helping students build both knowledge and confidence step by step.</p>
+                <p>With over three years&rsquo; experience in aesthetics and as the founder of her own clinic, Debbie specialises in anti-wrinkle treatments, dermal fillers for the ageing face, and regenerative treatments including polynucleotides, PRP, and skin boosters. She is particularly known for her calm, nurturing teaching style and her commitment to ensuring students feel fully supported throughout their learning experience.</p>
+                <p>Passionate about guiding practitioners at the start of their journey, Debbie focuses on building safe, confident clinicians who understand not just how to perform treatments, but how to care for their clients properly &mdash; with a strong emphasis on ethics, patient safety, and natural, balanced results.</p>
               </div>
               <div className="flex flex-wrap gap-2 mb-6">
-                <span className="px-3 py-1.5 bg-white/10 text-white text-xs tracking-wide">V300 Independent Prescriber</span>
-                <span className="px-3 py-1.5 bg-white/10 text-white text-xs tracking-wide">Dermal Fillers</span>
-                <span className="px-3 py-1.5 bg-white/10 text-white text-xs tracking-wide">Skin Health &amp; Skincare</span>
-                <span className="px-3 py-1.5 bg-white/10 text-white text-xs tracking-wide">Qualified Teacher</span>
+                <span className="px-3 py-1.5 bg-white/10 text-white text-xs tracking-wide">Registered Midwife &middot; 15+ Years</span>
+                <span className="px-3 py-1.5 bg-white/10 text-white text-xs tracking-wide">V300 Non-Medical Prescriber</span>
+                <span className="px-3 py-1.5 bg-white/10 text-white text-xs tracking-wide">PGCE Qualified Educator</span>
+                <span className="px-3 py-1.5 bg-white/10 text-white text-xs tracking-wide">Regenerative Aesthetics</span>
               </div>
               <div className="flex flex-wrap gap-3">
                 <motion.a whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} href="https://wa.me/447552231220" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-3 bg-[#C9A961] text-[#0A0A0A] text-sm font-medium tracking-wide hover:bg-[#d9bc7a] transition-colors">WhatsApp Debbie</motion.a>
